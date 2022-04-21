@@ -6,8 +6,8 @@ from django.core.mail import send_mail
 from django.shortcuts import render , redirect 
 from account.forms import UserRegisterForm , UserLoginForm
 from django.contrib.auth import authenticate , login , logout
-from account.scripts.sendEmailActivation import sendActivationEmail , checkMailSent
 from account.scripts.getVariousMethods import getUUID , getErrorDict
+from account.scripts.sendEmailActivation import sendActivationEmail , checkMailSent
 
         
 "register-user"
@@ -126,8 +126,6 @@ def sendEmailVerificationLink(request , *args , **kwargs) :
         checkMailSent(mail_sent ,request)
         return redirect("site-home")
     return redirect("unverified-email-useraccess")
-
-
 
 
 # nooneomme967@gmail.com
