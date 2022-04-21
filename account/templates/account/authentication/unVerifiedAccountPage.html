@@ -1,0 +1,43 @@
+{% extends "base.html" %} {% block content %}
+
+<style>
+  .full__unverfied__site__container {
+    height: 95vh;
+    width: 95vw;
+    border: 2px solid red;
+    display : flex; 
+    justify-content : center; 
+    align-items : center ; 
+  }
+
+  .un__verified__div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid black ; 
+  }
+</style>
+
+<div class="full__unverfied__site__container">
+  <div class="un__verified__div">
+
+    <div>
+    Hey {{request.user.username}} , You have not verified your email and its necessary to verify your email for accessing the whole site . Kindly verify it. Check your emails for the verficiation link . 
+    </div>
+    <br>
+    <br>
+
+    <div>
+    Resend Email Link 
+    <br>
+    <a href = "{% url 'send-email-verfication-link' %}">
+        <button>
+            Send Email Verficiation Link 
+        </button>
+    </a>
+    </div>
+
+  </div>
+</div>
+
+{% endblock content%}
