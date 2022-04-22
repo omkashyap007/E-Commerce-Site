@@ -1,0 +1,44 @@
+*{
+    margin : 0 ;
+    padding : 0 ;
+    text-decoration : none; 
+}
+
+:root{
+    --background-color-blue-1:  #f8fcfe ; 
+    --background-color-blue-2:  #e7f5fb ; 
+    --background-color-blue-3:  #d0ecf7 ; 
+    --background-color-blue-4:  #b8e2f3 ; 
+    --background-color-blue-5:  #a1d9ef ; 
+    --background-color-blue-6:  #69c2e6 ; 
+    --background-color-blue-7:  #4ab6e0 ;
+    --background-color-blue-8:  #2aa9df ;
+    --background-color-blue-9:  #2092bf ;
+    --background-color-blue-10: #1b7a9f ;
+    
+    --background-color-purple-1 : #5d34a4 ;
+    --background-color-purple-2 : #532e92 ;
+    --background-color-purple-3 : #482880 ;
+    --background-color-purple-4 : #3e236d ;
+    --background-color-purple-5 : #341d5b ;
+
+    --primary-border : 1px solid #bfbfbf ;
+    --primary-box-shadow-light: 3px 3px 7px #aaaaaa ;
+    --primary-box-shadow-dark: 0px 3px 7px #888888 ;
+
+    --primary-text-font-family : cursive ;
+
+    --primary-heading-font-family : Georgia ; 
+    --primary-content-font-family : Verdana ; 
+
+    --primary-light-text-color : white; 
+    --primary-dark-text-color  : black; 
+
+    --primary-light-text-shadow-right: 1px 1px 3px black ; 
+    --primary-light-text-shadow-left : -1px -1px 3px black ; 
+    
+    --primary-dark-text-shadow-right  : 1px 1px 3px white ; 
+    --primary-dark-text-shadow-left  : -1px -1px 3px white ; 
+
+
+}

@@ -1,16 +1,37 @@
+{% load static %}
 <!DOCTYPE html>
 <html>
+<head>
+    <meta charset = "UTF-8">
+    <meta name = "description" content = "E-Commerce-Site">
+    <meta name = "keywords" content = "Python , HTML , Django , JS">
+    <meta name= "author" content = "Om Kashyap">
+    <meta name= "viewport" content = "width=device-width , intial-scale=1.0">
+
+    <link rel = "stylesheet" href  = "{% static 'styling/mainCss.css' %}">
+    <title>{% block PageTitle %}{% endblock PageTitle %} </title>
+
+    <style>
+        body{
+            background-color : var(--background-color-blue-2);
+        }
+    </style>
+
+</head>
+<body>
+{% include "snippets/header.html" %}
+
+<div class = "messages__header__section">
+
 {% if messages %}
-
     {% for message in messages %}
-
         {{message}}
-
     {% endfor %}
-
 {% endif %}
+
+</div>
 
 {% block content %}
 
-
-{% endblock %}
+{% endblock content %}
+</body>
