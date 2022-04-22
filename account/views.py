@@ -9,7 +9,7 @@ from django.contrib.auth import authenticate , login , logout
 from account.scripts.getVariousMethods import getUUID , getErrorDict
 from account.scripts.sendEmailActivation import sendActivationEmail , checkMailSent
 
-        
+
 "register-user"
 def RegisterUser(request , *args , **kwargs) :
     if request.user.is_authenticated :
