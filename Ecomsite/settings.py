@@ -7,7 +7,7 @@ SECRET_KEY = 'django-insecure-wynempy35c=yt8c9$4r$i-xkeo+$_v-ptub#^8zqte&b24@u=)
 
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["192.168.43.28" , "localhost" , "127.0.0.1"]
 
 AUTH_USER_MODEL = "account.UserAccount"
 
@@ -19,6 +19,7 @@ INSTALLED_APPS = [
     # added apps 
     'commerce.apps.CommerceConfig',
     'account.apps.AccountConfig',
+    'payment.apps.PaymentConfig',
     
     'django.contrib.admin',
     'django.contrib.auth',
@@ -115,3 +116,9 @@ EMAIL_PORT = 465
 EMAIL_USE_SSL = True
 EMAIL_HOST_USER = os.environ.get("EMAIL_USER") 
 EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_PASS") 
+
+PAYTM_MERCHANT_ID = 'DIY12386817555501617'
+PAYTM_SECRET_KEY = 'bKMfNxPPf_QdZppa'
+PAYTM_WEBSITE = 'WEBSTAGING'
+PAYTM_CHANNEL_ID = 'WEB'
+PAYTM_INDUSTRY_TYPE_ID = 'Retail'

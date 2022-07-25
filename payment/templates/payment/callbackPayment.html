@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block content %}
+
+<style>
+
+    .payment__confirmation__details{
+        display: flex; 
+        flex-direction: column ; 
+        justify-content: center; 
+        align-items: center; 
+    }
+
+</style>
+    <div class = "payment__confirmation__details">
+    <span><h2>Callback Messsage: </h2>                    </span><br>
+    <span><h3> Checksum Verification: {{ message }} </h3> </span><br>
+    <span>MID: {{ MID.0 }}                                  </span><br>
+    <span>TXNID: {{ TXNID.0 }}                              </span><br>
+    <span>ORDERID: {{ ORDERID.0 }}                          </span><br>
+    <span>BANKTXNID: {{ BANKTXNID.0 }}                      </span><br>
+    <span>TXNAMOUNT: {{ TXNAMOUNT.0 }}                      </span><br>
+    <span>CURRENCY: {{ CURRENCY.0 }}                        </span><br>
+    <span><h3> STATUS: {{ STATUS.0 }} </h3>                 </span><br>
+    <span>RESPCODE: {{ RESPCODE.0 }}                        </span><br>
+    <span>RESPMSG: {{ RESPMSG.0 }}                          </span><br>
+    <span>TXNDATE: {{ TXNDATE.0 }}                          </span><br>
+    <span>GATEWAYNAME: {{ GATEWAYNAME.0 }}                  </span><br>
+    <span>BANKNAME: {{ BANKNAME.0 }}                        </span><br>
+    <span>BIN_NAME: {{ BIN_NAME.0 }}                        </span><br>
+    <span>PAYMENTMODE: {{ PAYMENTMODE.0 }}                  </span><br>
+    <span>CHECKSUMHASH: {{ CHECKSUMHASH.0 }}
+    </div>
+
+
+{% endblock content %}

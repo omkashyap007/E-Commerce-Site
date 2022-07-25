@@ -120,7 +120,7 @@ class UserLoginForm(forms.Form):
         widget=forms.EmailInput(
             attrs={
                 "id": "id_email",
-                "class": "id__login__form",
+                "class": "login__form",
                 "name": "email",
                 "placeholder": "Your email for login !",
                 "autofocus": True,
@@ -133,7 +133,7 @@ class UserLoginForm(forms.Form):
         widget=forms.PasswordInput(
             attrs={
                 "id": "id_password",
-                "class": "id__login_form",
+                "class": "login__form",
                 "name": "password",
                 "placeholder": "Your password for login !",
             }

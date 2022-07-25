@@ -1,0 +1,39 @@
+*{
+    margin:  0 ; 
+    text-decoration : none; 
+}
+
+
+:root{
+    --background-color-blue-1 :  #f8fcfe ;
+    --background-color-blue-2 :  #e7f5fb ;
+    --background-color-blue-3 :  #d0ecf7 ;
+    --background-color-blue-4 :  #b8e2f3 ;
+    --background-color-blue-5 :  #a1d9ef ;
+    --background-color-blue-6 :  #69c2e6 ;
+    --background-color-blue-7 :  #4ab6e0 ;
+    --background-color-blue-8 :  #2aa9db ;
+    --background-color-blue-9 :  #2092bf ;
+    --background-color-blue-10 : #1b7a9f ;
+
+    
+    --background-color-purple-1: #f5f5fa  ;
+    --background-color-purple-2: #dedeed  ;
+    --background-color-purple-3: #bdbedb  ;
+    --background-color-purple-4: #9c9dc9  ;
+    --background-color-purple-5: #7a7cb8  ;
+    --background-color-purple-6: #505395  ;
+    --background-color-purple-7: #474985  ;
+    --background-color-purple-8: #3e4074  ;
+    --background-color-purple-9: #363763  ;
+    --background-color-purple-10:#2d2e53  ;
+
+    --text-color-dark  : black; 
+    --text-color-light : white ; 
+
+    --primary-box-shadow-dark: 0px 3px 3px gray ; 
+
+    --primary-heading-font-family : cursive ; 
+    --primary-text-font-family : lato ; 
+    --primary-content-font-family : Helvetica ; 
+}

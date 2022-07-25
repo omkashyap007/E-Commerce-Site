@@ -1,0 +1,99 @@
+{% load static %}
+<link rel = "stylesheet"  href=  "{% static 'styling/header.css' %}">
+<header>
+  <div id="header__section__navbar" class="header__section__sidenavigation">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()" id = "id_close_button"
+      >&times;</a
+    >
+    <a href="{% url 'site-home' %}">Home</a>
+    <a href="#">About</a>
+    <a href="#">Services</a>
+    <a href="#">Clients</a>
+    <a href="#">Contact</a>
+  </div>
+  <div class="site__header">
+    <div class="left__header__section">
+      <div id="ecomsite__header__navbar" onclick="openNav()" id = "id_open_nav_button">
+        {% if request.user.is_authenticated %} &#9776; {% endif %}
+      </div>
+      <div id="ecomsite_header">
+        <a href ="{% url 'site-home' %}" style = "text-decoration:none ; "  >
+        <span>THE</span> <span style="color: yellow">E-COMMERCE</span> SITE
+      </a>
+      </div>
+    </div>
+
+    <div class="middle__header__section">
+      <form class="header__section__search__form" method="get">
+        <input
+          type="text"
+          id="header_section_search_form_input"
+          placeholder="Search for items ..."
+          name="query"
+        />
+        <input
+          type="submit"
+          id="header_section_search_form_submit"
+          value="Search"
+        />
+      </form>
+    </div>
+
+    <div class="right__header__section">
+      {% if request.user.is_authenticated %}
+      <div id="header_notification">Notification</div>
+      {% else %}
+      <div><a href= "{% url 'login-user' %}" style = "color: white;">Login</a></div>
+      {% endif %}
+      <div id="header_profile" class="header_profile">
+        {% if request.user.is_authenticated %}
+        <div class="profile__dropdown">
+          <button class="profile__dropdown__button">Profile</button>
+          <div class="profile__dropdown__content">
+            <a href="{% url 'profile-user' %}">Account</a>
+            <hr width="100%" />
+            <a href="#">Saved Items</a>
+            <hr width="100%" />
+            <a href="{% url 'site-service' %}">Explore</a>
+            <hr width="100%" />
+            <a href="{% url 'logout-user' %}">Logout</a>
+          </div>
+        </div>
+        {% else %}
+        <a href = "{% url 'register-user' %}" style = "color:white">
+        Register
+        </a>
+        {% endif %}
+      </div>
+      {% if request.user.is_authenticated %}
+      <div class = "header__cart" id = "id_header_cart">
+          <a href = "{% url 'cart-item' %}" style= "color:white ; text-decoration: none;" id = "id_header_cart_carttext">Cart</a>
+          <div class = "cart__products__count__number" id  = "id_cart_proudcts_count_number">
+            <a href = "{% url 'cart-item' %}" style = "color:white;text-decoration:none;">{{cart_item_quantity}}</a>
+          </div>
+      </div>
+      {% endif %}
+    </div>
+  </div>
+</header>
+
+<script>
+  function openNav() {
+    document.getElementById("header__section__navbar").style.width = "250px";
+    document.getElementById("header__section__navbar").style.height = "100%";
+  }
+
+  function closeNav() {
+    document.getElementById("header__section__navbar").style.width = "0";
+  }
+
+  var id_header_cart = document.getElementById("id_header_cart") ; 
+  id_header_cart.style.display = "flex";
+  id_header_cart.style.flexDirection = "column" ;
+  id_header_cart.style.alignItems = "center" ; 
+  id_header_cart.style.height = "100%" ; 
+  id_header_cart.style.padding = "5px" ; 
+
+  document.querySelector("#id_header_cart_carttext").style.marginRight = "5px" ;
+
+</script>

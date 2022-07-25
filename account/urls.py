@@ -9,9 +9,8 @@ urlpatterns = [
     
     # email verifications
     path("authentication/verify-email/<int:user_id>/<str:auth_token>" , account_views.VerifyEmailActivation , name= "verify-email-activation"),
+    path("authentication/send-email-verfication-link" , account_views.sendEmailVerificationLink , name = "send-email-verfication-link"),
+    path("profile/" ,  account_views.profilePage , name = "profile-user"),
     
-    path("authentication/unverified-email-useraccess/" , account_views.unVerifiedEmailAccountAccess , name = "unverified-email-useraccess") ,
-    
-    path("authentication/send-email-verfication-link" , account_views.sendEmailVerificationLink , name = "send-email-verfication-link")
-    
+    path("ajax/testing/" , account_views.testingAjax , name = "check-for-ajax") ,
 ]

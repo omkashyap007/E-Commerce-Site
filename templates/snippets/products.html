@@ -1,0 +1,117 @@
+{% load static %}
+<link rel = "stylesheet" href = "{% static 'product/productPage.css' %}"/>
+<link rel = "stylesheet" href = "{% static 'bootstrap/css/bootstrap.min.css' %}"/>
+<script type = "text/javascript" href= "{% static 'bootstrap/js/jquery.js' %}"/></script>
+<style>
+  .product__cart__update{
+    display:flex ; 
+    flex-direction : row ;
+    justify-content : space-around ; 
+    align-items: center;
+    background-color: #eee ; 
+  }
+
+  .product__save__heart__button{
+    height:2rem; 
+    width :2rem; 
+    border: 1px solid deeppink ;
+    background-color: white; 
+    border-radius : 50% ;
+  }
+</style>
+<div class = "site__products">
+<div class = "product__items" >
+
+{% for product in products %}
+  <div class = "product__item">
+    <div class = "product__image" style = "padding: 0px ; margin:0px ; ">
+    <img src = {{product.product_primary_image.url}} style = "padding: 0px ; margin:0px ; "/>   
+    </div>
+    <div class = "product__content">
+      <div class = "product__title text-center" >
+        <b>{{product.title}}</b>
+      </div>
+      <hr>
+      <div class = "product__price__quantity">
+        <div class = "product__price">{{product.price}}₹</div>
+         {% if request.user.is_authenticated %}
+        <div class = "product__quantity"><input id = "id_product_quantity_{{product.id}}" type = "number" min = 1 , max = 100 value = 1> </div>
+         {% endif %}
+      </div>
+    </div>
+     {% if request.user.is_authenticated %}
+    <hr>
+    <div class = "product__cart__update">
+      <div id = "id_product_add_button_{{product.id}}" 
+           onclick = "addItem({{product.id}} ,id_product_quantity_{{product.id}} )" 
+           class = "btn btn-primary mb-2 text-center">
+        Add Item
+      </div>
+      <div>
+        <button class = "product__save__heart__button" id = "id_save_heart_button_{{product.id}}" onclick = "saveItem({{product.id}} , 'id_save_heart_button_{{product.id}}')">
+        </button>
+      </div>
+    </div>
+     {% endif %}
+  </div>
+{% endfor %}
+
+</div>
+</div>
+<script>
+
+  function addItem(product_id , product_quantity) {
+    var url = "{% url 'add-item' %}"
+    var product_quanity = document.getElementById(product_quantity) ;
+    product_quantity = product_quantity.value ; 
+
+    payload = {
+      "csrfmiddlewaretoken" : "{{csrf_token}}" , 
+      "product_quantity" : product_quantity , 
+      "product_id" : product_id ,
+    }
+
+    $.ajax(
+      {
+        url : url , 
+        type  : "POST" ,
+        dataType : "json" , 
+        data : payload ,  
+        timeout : 5000 , 
+        success : function(data) {
+          console.log(data) ; 
+        },
+        error : function(data) {
+          console.log("There was some problem in the request !") ; 
+        },
+      }
+    );
+  };
+
+  function saveItem(product_id , product_div_id){
+    url = "{% url 'save-item'  %}" ;
+    payload = {
+      "csrfmiddlewaretoken" : "{{csrf_token}}" ,
+      "product_id" : product_id , 
+    } ;
+    $.ajax(
+      {
+        url : url , 
+        data : payload , 
+        type : "POST" , 
+        dataType : "json" , 
+        timeout : 5000 , 
+
+        success : function(data) {
+          if(data.success) {
+            var product_div = document.getElementById(product_div_id) ; 
+            product_div.style.backgroundColor = "deeppink" ; 
+          }
+        } ,
+        error : function(data) { 
+          console.error("There is something wrong with the request !") ; 
+        }
+      }
+    )
+  };
+</script>

@@ -1,5 +1,5 @@
 from django.contrib import admin
-from account.models import UserAccount
+from account.models import UserAccount , SellerAccount
 from django.contrib.auth.admin import UserAdmin
 
 class UserAccountAdmin(UserAdmin) : 
@@ -12,3 +12,9 @@ class UserAccountAdmin(UserAdmin) :
 	fieldsets = []
 	
 admin.site.register(UserAccount , UserAccountAdmin)
+
+@admin.register(SellerAccount)
+class SellerAccountAdmin(admin.ModelAdmin):
+    list_display = ["user" , "seller_account_name" , "receiving_upi_id"]
+    search_fields = ["user.username__startswith"]
+    

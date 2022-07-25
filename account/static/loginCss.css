@@ -1,0 +1,79 @@
+#id_login_form{
+    display: flex; 
+    flex-direction:column; 
+}
+
+#id_login_form_credentials{
+    display: flex;
+    align-items: center ; 
+    justify-content: center; 
+    flex-direction: column; 
+}
+
+#id_login_form_credentials_sub_part{
+    margin-top: 100px ;
+    background-color: var(--background-color-blue-6); 
+    display: flex; 
+    flex-direction: column ; 
+    justify-content: center; 
+    align-items: center; 
+}
+
+#id_login_form_header{
+    height: 60px; 
+    width: 100%; 
+    font-weight: 700; 
+    background-color: var(--background-color-purple-10);
+    display: flex; 
+    flex-direction: row ; 
+    align-items: center ; 
+    justify-content: center; 
+    color: var(--text-color-light) ;
+    border-radius: 5px 5px 0px 0px ; 
+}
+
+#id_login_form_detail_section{
+    display: flex ;
+    flex-direction: column ; 
+    justify-content : center; 
+    align-items: center ;
+    padding-left: 20px; 
+    padding-right: 20px; 
+    padding-top : 15px; 
+}
+
+#id_login_form_detail_section > *{
+    height: 25px ; 
+    border: none;
+    padding: 10px;
+
+}
+
+#id_login_submit_button{
+    padding-bottom: 10px ; 
+    padding-top :10px ;
+    padding-left: 10px; 
+    padding-right: 10px ;
+    height : 40px; 
+    background-color: var(--background-color-purple-8) ;
+    color: var(--text-color-light) ; 
+    font-family: var(--primary-content-font-family) ; 
+    display: flex;
+    flex-direction:row ; 
+    justify-content: center; 
+    align-items: center ;
+    margin-bottom: 10px ;  
+    border-radius: 5px; 
+    border: 2px solid var(--background-color-purple-3);
+    font-weight : 500; 
+}
+
+#id_login_form_error{
+    border: 2px solid red ; 
+    background-color: var(--background-color-blue-4) ; 
+    padding: 6px; 
+    border-radius: 5px; 
+    display: flex; 
+    justify-content: center ; 
+    align-items: center; 
+}

@@ -1,9 +1,29 @@
-<h1> This is the register page of the site </h1>
-
-
-<form method = "post">
-{% csrf_token %}
-{{form.as_p}}
-
-<input type = "submit" value = "Register">
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<link rel = "stylesheet" href = "{% static 'loginCss.css' %}">
+<form method="post"  enctype = "multipart/form-data" id = "id_login_form">
+  {% csrf_token %}
+  <div id = "id_login_form_credentials">
+    <div id = "id_login_form_credentials_sub_part">
+      <div id= "id_login_form_header"><h3>Login Here</h3></div>
+      <div id = "id_login_form_detail_section">
+          {{form.username}}
+          <br>
+          {{form.email}}
+          <br>
+          {{form.password1}}
+          <br>
+          {{form.password2}}
+      <br>
+      <input type="submit" value="Register" id = "id_login_submit_button" />
+      {% for error in errors %}
+      <div id = "id_login_form_error" class = "login__form__error">{{error}}</div>
+      <br>
+      {% endfor %}
+      </div>
+    </div>
+  </div>
 </form>
+
+{% endblock content %}

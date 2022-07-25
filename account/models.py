@@ -74,7 +74,7 @@ class UserAccount(AbstractBaseUser):
 		verbose_name="DateJoined", 
 		auto_now_add=True,
 	)
-	lastlogin = models.DateTimeField(verbose_name="LastLogin", auto_now=True)
+	lastlogin = models.DateTimeField(verbose_name="Last Login", auto_now=True)
 	
 	profile_image = models.ImageField( 
 		verbose_name = "Profile Image" ,
@@ -117,19 +117,14 @@ class UserAccount(AbstractBaseUser):
 	def has_module_perms(self, app_label):
 		return True
 
-		
-
-
-
-class SellerAccount(AbstractBaseUser):
-	...
-
-
-
-
-class SellerAccountManager(BaseUserManager):
-	...
 	
+class SellerAccount(models.Model) :
+    user = models.OneToOneField(UserAccount , on_delete = models.CASCADE)
+    seller_account_name = models.CharField(max_length= 150 , blank = True , null = True)
+    receiving_upi_id = models.CharField(max_length = 100 , blank = True , null = True)
+    
+    def __str__(self):
+        return "Seller -> " + str(self.user.username)
 	
-# omkashyap002
-# newPASSWORD123^&
+# # omkashyap002
+# # newPASSWORD123^&

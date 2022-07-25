@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<style>
+
+    .payment__section { 
+        height: 80vh ; 
+        width: 100vw ; 
+        display: flex ; 
+        flex-direction : column ; 
+        justify-content : center ; 
+        align-items: center ; 
+    }
+
+    .payment__form { 
+        display: flex; 
+        flex-direction: column ; 
+        justify-content : center ; 
+        align-items : center; 
+        background-color : var(--background-color-blue-7) ; 
+        padding: 10px  ;
+        border-radius : 10px ; 
+        box-shadow : var(--primary-box-shadow-dark) ; 
+    }
+
+    #id_form_header{
+        color: white ; 
+        text-shadow : var( --primary-light-text-shadow-right) ;
+        font-size : 1.4rem ;
+        font-family: var(--primary-text-font-family) ; 
+    }
+
+    #id_payment_amount{
+        padding: 5px ; 
+        font-family : var(--primary-content-font-family) ; 
+        font-size : 1.1rem ;
+        border-radius : 5px; 
+        border:none ; 
+        box-shadow : var(--primary-box-shadow-light) ; 
+    }
+
+    #id_payment_submit_button{
+        padding :10px 20px; 
+        font-size : 1.3rem ; 
+        font-family :var(--primary-heading-font-family) ; 
+        background-color: var(--background-color-blue-4) ; 
+        color : black ; 
+        border: none ; 
+        box-shadow : var(--primary-box-shadow-dark) ; 
+        border-radius : 8px ;
+
+    }
+
+</style>
+
+<div class="payment__section">
+  <div id="payment__button">
+    <form method="post" class = "payment__form">
+        {% csrf_token %}
+        <div id = "id_form_header">Amount Payable</div>
+        <br>
+      <input
+        type="number"
+        id="id_payment_amount"
+        name="amount"
+        class="payment__inputs"
+      />
+      <br />
+
+      <input
+        type="submit"
+        value="Pay"
+        id="id_payment_submit_button"
+        class="payment__inputs"
+      />
+    </form>
+  </div>
+</div>
+
+
+{% endblock content %}

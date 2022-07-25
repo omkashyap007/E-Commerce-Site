@@ -53,7 +53,7 @@ def checkInternetConnection() :
 def sendActivationEmail(email , auth_token , user_id , *args , **kwargs) : 
     is_connected = checkInternetConnection()
     if is_connected :
-        activation_link = createEmailActivationLink(auth_token , user_id )
+        activation_link = createEmailActivationLink(auth_token , user_id ) 
         html_message = createActivationEmailHtmlMessage(activation_link)
         try : 
             send_mail(
@@ -64,7 +64,8 @@ def sendActivationEmail(email , auth_token , user_id , *args , **kwargs) :
                 html_message = html_message 
             )
             return "Mail sent"
-        except Exception as e : 
+        except Exception as e :
+            print(str(e))
             return "Something Unexpected Occured !"
     else : 
         return "Internet connection Error"

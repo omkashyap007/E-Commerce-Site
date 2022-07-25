@@ -1,0 +1,68 @@
+{% load static %}
+<link rel = "stylesheet"  href = "{% static "styling/mainCss.css "%}">
+<style>
+
+    body{
+        background-color: var(--background-color-blue-2); 
+    }
+    .redirect__page__container{
+        display: flex; 
+        flex-direction : column ; 
+        justify-content : center; 
+        align-items: center ; 
+    }
+    #id_redirect_page_header{
+        font-family : var(--primary-text-font-family) ;
+        color: black  ; 
+        font-size : 1.6rem; 
+        color: black ; 
+        display: flex ;
+        flex-direction: row ; 
+        justify-content: center; 
+        align-items: center; 
+        font-family : var(--primary-text-font-family) ; 
+    }
+    
+    #id_redirect_paytm_message{
+        color: black ;
+        font-size : 1.2rem ; 
+        font-family : var(--primary-content-font-family) ; 
+    }
+</style>
+
+
+<div class="redirect__page__container">
+  <h1 id = "id_redirect_page_header">Please do not refresh this page...</h1>
+  <br>
+  <br>
+  <div id = "id_redirect_paytm_message">
+
+    Plese wait while we are redirecting you to the paytm payment page
+  </div>
+  <form
+    method="post"
+    action="https://securegw-stage.paytm.in/order/process/"
+    name="f1"
+  >
+    <table>
+      <tbody>
+        <input type="hidden" name="MID" value="{{ MID }}" />
+        <input type="hidden" name="WEBSITE" value="{{ WEBSITE }}" />
+        <input type="hidden" name="ORDER_ID" value="{{ ORDER_ID }}" />
+        <input type="hidden" name="CUST_ID" value="{{ CUST_ID }}" />
+        <input
+          type="hidden"
+          name="INDUSTRY_TYPE_ID"
+          value="{{ INDUSTRY_TYPE_ID }}"
+        />
+        <input type="hidden" name="CHANNEL_ID" value="{{ CHANNEL_ID }}" />
+        <input type="hidden" name="TXN_AMOUNT" value="{{ TXN_AMOUNT }}" />
+        <input type="hidden" name="CALLBACK_URL" value="{{ CALLBACK_URL }}" />
+        <input type="hidden" name="CHECKSUMHASH" value="{{ CHECKSUMHASH }}" />
+      </tbody>
+    </table>
+    <script type="text/javascript">
+      document.f1.submit();git
+    </script>
+  </form>
+</div>

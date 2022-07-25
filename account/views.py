@@ -1,8 +1,11 @@
+import json
 import os ,time ,requests
 from datetime import datetime
+from commerce.models import Cart 
 from django.contrib import messages
-from account.models import UserAccount
 from django.core.mail import send_mail
+from account.models import UserAccount
+from django.http import HttpResponse
 from django.shortcuts import render , redirect 
 from account.forms import UserRegisterForm , UserLoginForm
 from django.contrib.auth import authenticate , login , logout
@@ -76,57 +79,81 @@ def VerifyEmailActivation(request , user_id , auth_token , *args , **kwargs) :
     if request.user.is_verified : 
         messages.success(request,  "You are already verfied user !")
         return redirect("site-home")
-    user = UserAccount.objects.get(id = user_id)
-    user_auth_token = str(user.auth_token)
-    auth_token = str(auth_token)
-    if auth_token == user_auth_token : 
-        user.is_verified = True
-        user.save()
-        messages.success(request , "Your email account is verified . You can explore the Website now !")
+    logged_in_user = request.user
+    try : 
+        user = UserAccount.objects.get(id = user_id)
+    except Exception as e : 
+        user = None
+    if not user : 
+        messages.error(request , "There is no such user with id = {}".format(user_id))
         return redirect("site-home")
+    same_user = False
+    user_auth_token = str(logged_in_user.auth_token)
+    try : 
+        auth_token = str(auth_token)
+    except Exception as e : 
+        auth_token = None
+    if not auth_token : 
+        messages.error(request , "There is no auth token to verify !")
+        return redirect("site-home")
+    if logged_in_user == user :
+        same_user = True
+        if auth_token == user_auth_token : 
+            user.is_verified = True
+            user.save()
+            messages.success(request , "Your email account is verified . You can explore the Website now !")
+            return redirect("site-home")
+        else : 
+            messages.error("The auth token is either expired or not valid !")
+            return redirect("site-home")    
     else : 
         messages.error(request , "The Email activation link is not yours !")
         return redirect("site-home")
     messages.error(request , "No response")
     return redirect("site-home")
 
-
-
-"unverified-email-useraccess"
-def unVerifiedEmailAccountAccess(request , *args , **kwargs) :
-    user = request.user
-    if not user.is_authenticated : 
-        messages.error(request , "You have to login first to verify your email !")
-        return redirect("login-user")
-    if user.is_verified : 
-        messages.success(request , "You are already verified user , Kindly explore the site !")
-        return redirect("site-home")
-    if not user.is_verified:
-        user_id = user.id 
-        auth_token = user.auth_token
-    context = {
-        "user" : user ,
-        "user_id" : user_id ,
-        "auth_token" : auth_token ,
-    }
-    return render(request , "account/authentication/unVerifiedAccountPage.html" , context )
-
-
 "send-email-verfication-link"
 def sendEmailVerificationLink(request , *args , **kwargs) : 
     user = request.user
+    if not user.is_authenticated : 
+        messages.error("You cannot access this page !")
+        return redirect("site-home")
     if user.is_verified:
         messages.success(request,  "You are already verified !")
         return redirect("site-home")
     if not user.is_verified:
-        auth_token = user.auth_token
-        user_id = user.id 
+        auth_token = str(getUUID())
+        user.auth_token = auth_token
+        user.save()
         email = user.email
+        user_id = user.id
         mail_sent = sendActivationEmail(email , auth_token , user_id )
         checkMailSent(mail_sent ,request)
         return redirect("site-home")
-    return redirect("unverified-email-useraccess")
+    messages.error("No response !")
+    return redirect("site-home")
 
+def profilePage(request , *args  , **kwargs) :
+    context = {
+        "is_verified" : True, 
+        "user" : None ,
+    }
+    if not request.user.is_authenticated : 
+        return redirect("site-home")
+    if not request.user.is_verified :
+        context["is_verified"] = False
+    user = request.user
+    context["user"] = user 
+    cart = Cart.objects.get(owner = user)
+    print(cart.products.all())
+    return render(request, "account/profilePage.html" , context)
 
-# nooneomme967@gmail.com
-# thisPPaSS234&()
+def testingAjax(request, *args , **kwargs) :
+    payload = {
+        "data" : "Some data has to be sent , so this is the data !" ,  
+        "response" :  "The request was successful." , 
+    }
+    return HttpResponse(json.dumps(payload) , content_type = "application/json")
+
+# password for all
+# OMpassword#123

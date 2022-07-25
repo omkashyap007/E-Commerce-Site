@@ -1,14 +1,26 @@
 {% extends "base.html" %}
+{% load static %}
 {% block content %}
 
-<h1>This is the login page of the site</h1>
-
-<form method="post"  enctype = "multipart/form-data">
+<link rel = "stylesheet" href = "{% static 'loginCss.css' %}">
+<form method="post"  enctype = "multipart/form-data" id = "id_login_form">
   {% csrf_token %}
-
-  {{form.as_p}}
-  <br>
-  <input type="submit" value="Login" />
+  <div id = "id_login_form_credentials">
+    <div id = "id_login_form_credentials_sub_part">
+      <div id= "id_login_form_header"><h3>Login Here</h3></div>
+      <div id = "id_login_form_detail_section">
+      {{form.email}}
+      <br>
+      {{form.password}}
+      <br>
+      <input type="submit" value="Login" id = "id_login_submit_button" />
+      {% for error in errors %}
+      <div id = "id_login_form_error" class = "login__form__error">{{error}}</div>
+      <br>
+      {% endfor %}
+      </div>
+    </div>
+  </div>
 </form>
 
 {% endblock %}
