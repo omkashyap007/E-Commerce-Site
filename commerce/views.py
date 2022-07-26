@@ -213,6 +213,22 @@ def updateQuantity(request , *args , **kwargs) :
     payload["response"] = "The request was successfull !"
     return HttpResponse(json.dumps(payload) , content_type = "application/json")
     
+    
+def proceedToPurchase(request , *args , **kwargs) :
+    user = request.user 
+    if not user.is_authenticated : 
+        messages.error(request , "You are not logged in so you can't proceed to the purchase !")
+        return redirect("login-user")
+    if not user.cart : 
+        messages.error(request , "You don't have a cart so you can't proceed to the purchase !")
+        return redirect("home-page")
+    if not user.cart.products.all() : 
+        messages.error(request , "You don't have any products in your cart so you can't proceed to the purchase !")
+        return redirect("home-page")
+    
+    
+    context = {}
+    return render(request , "checkOut/proceedToPurchasePage.html" , context)
 
 def serviceRecharge(request , *args , **kwargs) : 
     context = {}
