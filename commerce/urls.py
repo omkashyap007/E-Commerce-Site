@@ -11,4 +11,7 @@ urlpatterns =[
     
     # updating product data
     path("update-quantity/" , commerce_views.updateQuantity , name = "update-quantity") ,
+    
+    # order url section
+    path("proceed-to-purchase/" , commerce_views.proceedToPurchase , name = "proceed-to-purchase") , 
 ]

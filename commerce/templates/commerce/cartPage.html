@@ -5,10 +5,22 @@
 {% if cart_item_quantity == 0 %}
 <div class = "cart__item__empty__div">You don't have any item in the cart !</div>
 {% else %}
-<div class = "proceed__to__purchase__div__block">
-
-    
+<div class = "proceed__to__purchase__div__block"
+     style = "margin-top:5px; ">
+    <center>
+    <div id = "id_proceed_to_purchase_div_block_button_container">
+        <form action = "{% url 'proceed-to-purchase' %}"  method = "post">
+            {% csrf_token %}
+        <button class = "btn btn-secondary"
+                id = "id_proceed_to_purchase_button"
+                type = "submit">
+        Prcoeed to Purchase
+        </button>
+        <form>
+    </div>  
+    <center> 
 </div>
+
 <div class = "product__cart_items" >
 {% for item in cart_items %}
     <!-- Individual Product Div ( looped )-->
@@ -112,6 +124,7 @@
             inputField.value = 0 ; 
         }
     };
+
 </script>
 {% endif %}
 {% endblock content %}
